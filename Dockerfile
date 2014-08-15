@@ -1,12 +1,15 @@
-FROM fedora
+FROM ubuntu:trusty
 MAINTAINER Clayton Coleman <ccoleman@redhat.com>
 
 ENV GOPATH /go
-RUN yum install -y golang git hg bzr libselinux-devel glibc-static btrfs-progs-devel device-mapper-devel sqlite-devel libnetfilter_queue-devel gcc gcc-c++ && yum clean all
-RUN mkdir -p $GOPATH && echo $GOPATH >> ~/.bash_profile
+RUN apt-get update -y
+&& \ apt-get install -y golang git bzr make libselinux-dev gcc pkg-config 
+&& \ apt-get clean
+&& \ mkdir -p $GOPATH && echo $GOPATH >> ~/.bash_profile
 
 ADD     . /go/src/github.com/openshift/geard
 WORKDIR   /go/src/github.com/openshift/geard
+
 RUN \
    ./contrib/build -s -n && \
    ./contrib/test && \
@@ -19,3 +22,4 @@ RUN \
 CMD ["/bin/gear", "daemon"]
 EXPOSE 43273
 VOLUME /var/lib/containers
+
