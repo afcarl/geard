@@ -19,7 +19,7 @@ RUN \
    /bin/cp -f $GOPATH/bin/sti /usr/bin && \
    rm -rf $GOPATH
 
-CMD ["/bin/gear", "daemon"]
+CMD ["/usr/bin/gear", "daemon"]
 EXPOSE 43273
 VOLUME /var/lib/containers
 
