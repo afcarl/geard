@@ -3,7 +3,7 @@ MAINTAINER Clayton Coleman <ccoleman@redhat.com>
 
 ENV GOPATH /go
 RUN apt-get update -y
-&& \ apt-get install -y golang git bzr make libselinux-dev gcc pkg-config 
+&& \ apt-get install -y golang git bzr make libselinux-dev gcc pkg-config systemd-services
 && \ apt-get clean
 && \ mkdir -p $GOPATH && echo $GOPATH >> ~/.bash_profile
 
